@@ -1,0 +1,12 @@
+services:
+  django:
+    build:
+      context: ./Django
+      dockerfile: Dockerfile
+    container_name: Django
+    ports:
+      - 8000:8000
+    working_dir: /app
+    command: ['python3', 'manage.py', 'runserver', '0.0.0.0:8000']
+    volumes:
+      - ./Django/Blog:/app
