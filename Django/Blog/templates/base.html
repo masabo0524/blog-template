@@ -27,10 +27,13 @@
 		<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 		  Blogs
 		</a>
+		{% if topics %}
 		<ul class="dropdown-menu">
-		  <li><a class="dropdown-item" href="#">Tech</a></li>
-		  <li><a class="dropdown-item" href="#">English</a></li>
+		  {% for topic in topics %}
+		  <li><a class="dropdown-item" href="#">{{ topic.genre }}</a></li>
+		  {% endfor %}
 		</ul>
+		{% endif %}
               </li>
 	      <li class="nav-item">
 		<a class="nav-link" href="#">Profile</a>
