@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LogoutView, LoginView
+from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 
@@ -30,5 +31,9 @@ class LogoutView(LoginRequiredMixin, LogoutView):
 class LoginView(LoginView):
     template_name = "login.html"
     next_page = reverse_lazy('blog_app:home')
+
+class BlogListView(ListView):
+    template_name = 'blog_list.html'
+    
 
 
