@@ -11,7 +11,7 @@ urlpatterns = [
     path('signup/', SignupView.as_view(), name='signup'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('login/', LoginView.as_view(), name='login'),
-    path('blogs/<int:pk>', BlogListView.as_view(), name='blogs'),
+    path('blogs/<int:id>/', BlogListView.as_view(), name='blogs'),
 ]
 
 

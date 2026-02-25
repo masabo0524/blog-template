@@ -32,6 +32,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_reader = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
 
@@ -75,8 +76,10 @@ class Articles(BaseModel):
                               on_delete=models.SET_NULL,
                               related_name='articles',
                               null=True)
+    summary = models.CharField(max_length=500)
     limit_reader = models.BooleanField(default=False)
-    
+    public = models.BooleanField(default=True)
+    reader_cnt = models.IntegerField()
     
     def __str__(self):
         return self.title

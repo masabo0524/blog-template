@@ -30,7 +30,7 @@
 		{% if topics %}
 		<ul class="dropdown-menu">
 		  {% for topic in topics %}
-		  <li><a class="dropdown-item" href="#">{{ topic.genre }}</a></li>
+		  <li><a class="dropdown-item" href="{% url 'blog_app:blogs' id=topic.id %}">{{ topic.genre }}</a></li>
 		  {% endfor %}
 		</ul>
 		{% endif %}
@@ -43,7 +43,7 @@
               </li>
 	      {% if user.is_superuser %}
 	      <li class="nav-item">
-		<a class="nav-link" href="admin/">Admin</a>
+		<a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
               </li>
 	      {% endif %}
 	    </ul>

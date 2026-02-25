@@ -1,7 +1,19 @@
 * Todo List
 - [x] I have to fix signup page and form at the next time
-- [ ] Create Views for topic list
-- [ ] Create base html for posting
-- [ ] HTML upload system
-- [ ] Logging system(IP address)
+- [x] Create Views for topic list
+- [x] Title of Article list
+- [] Create base html for posting
+- [] HTML upload system
+- [] Logging system(IP address)
+  - [] Logging Middleware
+  - [] Output CSV or JSON
+- [] Synsecize posted HTML  
+- [] sitemap
+- [] SEO
 
+* Post機能について
+- superuserがブログ記事を投稿できるようにPost機能を実装する
+- superuserだけが使えるようにするためにOnlySuperUserMixinを実装済み
+- html, image, videoをフォルダごとPostできるようにする
+- htmlファイル内のimg, videoタグのパスをサーバー上でのパスに変更するようにスクリプトを作成(change_path関数)
+- 
