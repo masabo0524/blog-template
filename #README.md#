@@ -16,4 +16,4 @@
 - superuserだけが使えるようにするためにOnlySuperUserMixinを実装済み
 - html, image, videoをフォルダごとPostできるようにする
 - htmlファイル内のimg, videoタグのパスをサーバー上でのパスに変更するようにスクリプトを作成(change_path関数)
-- Podcast用に音声ファイル(audioタグ)もデータベースで管理できるようにする
+- Podcast用に音声ファイル(audioタグ)もデータベースで管理できるようにする	

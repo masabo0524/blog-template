@@ -1,23 +1,25 @@
 from bs4 import BeautifulSoup
+from django.core.files.base import ContentFile
 import os
 
-def change_path(html_file, path_media):
-    with open(html_file,"r") as html_file:
-        html = html_file.read()
-        soup = BeautifulSoup(html, 'html.parser')
+def Screening_path(inmemory_file, path_media):
+    html = inmemory_file.read()
+    decoded_html = html.decode("utf-8", errors='replace')
+    soup = BeautifulSoup(html, 'html.parser')
 
-        img = soup.find('img')
-        if img:
-            img_name = os.path.basename(img["src"])
-            img["src"] = os.path.join(path_media, img_name)
-
-        movie = soup.find('movie')
-        if movie:
-            movie_name = os.path.basename(movie["src"])
-            movie["src"] = os.path.join(path_media, movie_name)
+    img = soup.find('img')
+    if img:
+        img_name = os.path.basename(img["src"])
+        img["src"] = os.path.join(path_media, img_name)
         
-        new_html = str(soup)
+    movie = soup.find('movie')
+    if movie:
+        movie_name = os.path.basename(movie["src"])
+        movie["src"] = os.path.join(path_media, movie_name)
+            
+    audio = soup.find('audio')
+    if audio:
+        audio_name = os.path.basename(audio["src"])
+        audio["src"] = os.path.join(path_media, audio_name)
 
-    modified_file = os.path.join("modified_", html_file)
-    with open(modified_file, "w") as save_file:
-        save_file.write(new_html)
+    return ContentFile(str(soup).encode("utf-8"))
