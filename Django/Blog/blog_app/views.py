@@ -5,6 +5,7 @@ import os
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.views import LogoutView, LoginView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,7 +14,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, PostArticleForm
 from .models import Users, Topics, Articles, Htmls, Images, Videos, Audios
 from .Mixin import OnlySuperUserMixin
-from .change_path_html import Screening_path
+from .change_path_html import Screening_path, file2str
 
 #================
 #=== Top Page ===
@@ -119,16 +120,28 @@ class PostArticleView(OnlySuperUserMixin, FormView):
 
         if not media_path:
             for html_file in html_files:
+                html_db = file2str(html_file)
                 html_obj = Htmls(article=article,
-                      html=html_file)
+                                 html=html_db)
                 html_obj.save()
         else:
             media_path = os.path.dirname(media_path)
             for html_file in html_files:
-                modify_html_file = Screening_path(html_file, media_path)
-                modify_html_file.name = html_file.name
+                html_db = Screening_path(html_file, media_path)
                 html_obj = Htmls(article=article,
-                                 html=modify_html_file)
+                                 html=html_db)
                 html_obj.save()
 
         return super().form_valid(form)
+
+
+#========================
+#=== Blog Detail View ===
+#========================
+class ArticleDetailView(DetailView):
+    model = Articles
+    template_name = "blog.html"
+    pk_url_kwarg = "article_id"
+    context_object_name = "htmlfile"
+    queryset = Articles.objects.prefetch_related('htmls')
+

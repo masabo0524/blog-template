@@ -54,7 +54,8 @@ class PostArticleForm(forms.Form):
     summary = forms.CharField(max_length=500, widget=forms.Textarea)
     html_file = MultipleFileField(widget=MultipleFileInput(attrs={'webkitdirectory':''}))
     is_limited = forms.BooleanField(
-        widget=forms.CheckboxInput(attrs={'class':'form-check-input'})
+        widget=forms.CheckboxInput(attrs={'class':'form-check-input'}),
+        required=False
     )
 
 

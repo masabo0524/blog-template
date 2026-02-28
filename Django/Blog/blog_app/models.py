@@ -125,7 +125,8 @@ class Htmls(BaseModel):
     article = models.ForeignKey(Articles,
                                 on_delete=models.CASCADE,
                                 related_name='htmls')
-    html = models.FileField(upload_to=article_directory_path)
+    html = models.TextField()
+    is_main = models.BooleanField(default=True)
 
     def __str__(self):
         return self.article.title

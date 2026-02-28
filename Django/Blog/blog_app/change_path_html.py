@@ -22,4 +22,10 @@ def Screening_path(inmemory_file, path_media):
         audio_name = os.path.basename(audio["src"])
         audio["src"] = os.path.join(path_media, audio_name)
 
-    return ContentFile(str(soup).encode("utf-8"))
+    return str(soup)
+
+
+def file2str(html_file):
+    html = html_file.read()
+    decoded_html = html.decode("utf-8", errors='replace')
+    return decoded_html

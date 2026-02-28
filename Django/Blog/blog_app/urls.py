@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    HomeView, SignupView, LogoutView, LoginView, BlogListView, PostArticleView
+    HomeView, SignupView, LogoutView, LoginView, BlogListView, PostArticleView,  ArticleDetailView
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('blogs/<int:id>/', BlogListView.as_view(), name='blogs'),
     path('post/', PostArticleView.as_view(), name='post'),
+    path('articles/<int:article_id>/',  ArticleDetailView.as_view(), name="articles")
 ]
 
 
